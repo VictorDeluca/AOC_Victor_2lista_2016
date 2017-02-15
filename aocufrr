@@ -1,0 +1,8 @@
+1) Processadores multiciclo dividem as instruções em passos, possibilitando que instruções mais curtas finalizem sua execução mais rapidamente ao evitar etapas desnecessárias. Além disso, possibilitam a implementação de pipelining, técnica que melhora ainda mais o seu desempenho.
+
+2) Necessário 
+
+
+
+Referências:
+http://cmpe.emu.edu.tr/cergun/CMPE325/Key%20Differences%20between%20Datapaths.htm
