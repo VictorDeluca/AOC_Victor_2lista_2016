@@ -4,6 +4,13 @@
 
 3)
 
+5)
+div.d F1, F2, F3
+sub.d F4, F5, F1 <= Gera RAW (Registrador F1)
+s.d  F4, 4(F10) <= Gera WAW (Registrador F4)
+add.d F5, F6, F7 <= Hipótese de WAR (Registrador F5)
+div.d F4, F5, F6 <= Gera RAW (Registrador F5)
+
 
 Referências:
 http://cmpe.emu.edu.tr/cergun/CMPE325/Key%20Differences%20between%20Datapaths.htm
