@@ -1,8 +1,10 @@
 1) Processadores multiciclo dividem as instruções em passos, possibilitando que instruções mais curtas finalizem sua execução mais rapidamente ao evitar etapas desnecessárias. Além disso, possibilitam a implementação de pipelining, técnica que melhora ainda mais o seu desempenho.
 
-2) Necessário 
+2) Basta utilizar registradores de controle em cada seção do processador dedicada a uma etapa do pipelining. Esses registradores de controle servirão para armazenar os resultados da operação anterior e utilizá-los na próxima operação durante o próximo ciclo de clock.
 
+3)
 
 
 Referências:
 http://cmpe.emu.edu.tr/cergun/CMPE325/Key%20Differences%20between%20Datapaths.htm
+https://www.cise.ufl.edu/~mssz/CompOrg/CDA-pipe.html
