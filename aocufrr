@@ -44,7 +44,18 @@ Total: 4+5+4+4+4+3=24
 Logo, o speedup foi de 24/18 = 1,33 vezes
 
 
-4)
+4) Abaixo é representado o funcionamento do processador com a técnica de bypassing e memória segmentada:
+
+Ciclo 1: IF(Linha 1)
+Ciclo 2: ID(Linha 1), IF(Linha 2)
+Ciclo 3: EX(Linha 1), ID(Linha 2), IF(Linha 3) <= O resultado do EX na linha 1 alimentará o EX da linha 2 no próximo ciclo
+Ciclo 4: WB(Linha 1), EX(Linha 2), ID(Linha 3), IF(Linha 4)
+Ciclo 5: WB(Linha 2), EX(Linha 3), ID(Linha 4), IF(Linha 5)
+Ciclo 6: WB(Linha 3), EX(Linha 4), ID(Linha 5), IF(Linha 6)
+Ciclo 7: MEM(Linha 4), EX(Linha 5), ID(Linha 6)
+Ciclo 8: WB(Linha 4), WB(Linha 5), EX(Linha 6)
+Ciclo 9: WB(Linha 6) 
+
 
 
 5)
