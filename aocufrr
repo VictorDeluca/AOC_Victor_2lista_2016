@@ -4,12 +4,25 @@
 
 3)
 Loop: 
-subi $t2,$t2,4
-lw $t1,0($t2) <=
-add $t3,$t1,$t4
-add $t4,$t3,$t3
-sw $t4,0($t2)
-beq $t2,$0,loop
+1- subi $t2,$t2,4
+2- lw $t1,0($t2)
+3- add $t3,$t1,$t4
+4- add $t4,$t3,$t3
+5- sw $t4,0($t2)
+6- beq $t2,$0,loop
+
+Abaixo é representado o funcionamento do processador a cada ciclo de clock
+
+Ciclo 1: IF(Linha 1)
+Ciclo 2: ID(Linha 1), IF(Linha 2)
+Ciclo 3: EX(Linha 1), Stall(Linha 2) - A operação ID da Linha 3 depende do resultado da Linha 1
+Ciclo 4: WB(Linha 1), Stall(Linha 2)
+Ciclo 5: ID(Linha 2), IF(Linha 3)
+Ciclo 6: EX(Linha 2), Stall(Linha 3) - A operação ID da Linha 3 depende do resultado da Linha 2
+Ciclo 7: MEM(Linha 2), Stall(Linha 3)
+Ciclo 8: WB(Linha 2), Stall(Linha 3)
+Ciclo 9: ID(Linha 3), IF(Linha 4)
+
 
 5)
 1- div.d F1, F2, F3
