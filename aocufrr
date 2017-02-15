@@ -3,13 +3,20 @@
 2) Basta utilizar registradores de controle em cada seção do processador dedicada a uma etapa do pipelining. Esses registradores de controle servirão para armazenar os resultados da operação anterior e utilizá-los na próxima operação durante o próximo ciclo de clock.
 
 3)
+Loop: 
+subi $t2,$t2,4
+lw $t1,0($t2) <=
+add $t3,$t1,$t4
+add $t4,$t3,$t3
+sw $t4,0($t2)
+beq $t2,$0,loop
 
 5)
-div.d F1, F2, F3
-sub.d F4, F5, F1 <= Gera RAW (Registrador F1)
-s.d  F4, 4(F10) <= Gera WAW (Registrador F4)
-add.d F5, F6, F7 <= Hipótese de WAR (Registrador F5)
-div.d F4, F5, F6 <= Gera RAW (Registrador F5)
+1- div.d F1, F2, F3
+2- sub.d F4, F5, F1 <= Dependência RAW em relação à linha 1 (Registrador F1)
+3- s.d  F4, 4(F10) <= Dependência de saída WAW em relação à linha 2 (Registrador F4)
+4- add.d F5, F6, F7 <= Antidependênciara WAR em relação à linha 2 (Registrador F5)
+5- div.d F4, F5, F6 <= Dependência RAW em relação à linha 4 (Registrador F5)
 
 
 Referências:
