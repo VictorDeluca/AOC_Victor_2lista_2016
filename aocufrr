@@ -11,17 +11,40 @@ Loop:
 5- sw $t4,0($t2)
 6- beq $t2,$0,loop
 
-Abaixo é representado o funcionamento do processador a cada ciclo de clock
+Abaixo é representado o funcionamento do processador a cada ciclo de clock utilizando pipeline:
 
 Ciclo 1: IF(Linha 1)
 Ciclo 2: ID(Linha 1), IF(Linha 2)
-Ciclo 3: EX(Linha 1), Stall(Linha 2) - A operação ID da Linha 3 depende do resultado da Linha 1
+Ciclo 3: EX(Linha 1), Stall(Linha 2) - Conflito de dados: A operação ID da Linha 3 depende do resultado da Linha 1
 Ciclo 4: WB(Linha 1), Stall(Linha 2)
 Ciclo 5: ID(Linha 2), IF(Linha 3)
-Ciclo 6: EX(Linha 2), Stall(Linha 3) - A operação ID da Linha 3 depende do resultado da Linha 2
+Ciclo 6: EX(Linha 2), Stall(Linha 3) - Conflito de dados: A operação ID da Linha 3 depende do resultado da Linha 2
 Ciclo 7: MEM(Linha 2), Stall(Linha 3)
 Ciclo 8: WB(Linha 2), Stall(Linha 3)
 Ciclo 9: ID(Linha 3), IF(Linha 4)
+Ciclo 10: EX(Linha 3), Stall(Linha 4) - Conflito de dados: A operação ID da Linha 4 depende do resultado da Linha 3
+Ciclo 11: WB(Linha 3), Stall(Linha 4)
+Ciclo 12: ID(Linha 4), IF(Linha 5)
+Ciclo 13: EX(Linha 4), ID(Linha 5)
+Ciclo 14: WB(Linha 4), EX(Linha 5)
+Ciclo 15: MEM(Linha 5), Stall(Linha 6) - Conflito estrutural: Não é possível que duas instruções acessem a memória ao mesmo tempo, portanto o IF da linha 6 terá de esperar um ciclo.
+Ciclo 16: IF(Linha 6)
+Ciclo 17: ID(Linha 6)
+Ciclo 18: EX(Linha 6)
+
+Um processador sem pipeline executaria da seguinte forma:
+Linha 1: 4 ciclos (Instruções do tipo R não têm MEM)
+Linha 2: 5 ciclos
+Linha 3: 4 ciclos
+Linha 4: 4 ciclos
+Linha 5: 4 ciclos (A instrução SW não tem WB)
+Linha 6: 3 ciclos (Instruções BEQ não têm MEM nem WB)
+Total: 4+5+4+4+4+3=24
+
+Logo, o speedup foi de 24/18 = 1,33 vezes
+
+
+4)
 
 
 5)
